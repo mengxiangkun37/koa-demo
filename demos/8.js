@@ -1,10 +1,14 @@
 const Koa = require('koa');
 const app = new Koa();
 
-const main = ctx => {
+const logger = (ctx, next) =>{
 	console.log(`${Date.now()} ${ctx.request.method} ${ctx.request.url}`);
-	ctx.response.body = 'hello haha';
+	next();
+}
+const main = ctx =>{
+	ctx.response.body = 'hello 8js';
 };
 
+app.use(logger);
 app.use(main);
-app.listen(3000);
+app.listen(3002);
